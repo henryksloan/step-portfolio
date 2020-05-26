@@ -1,9 +1,56 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+html * {
+    color: #000;
+    font-family: 'Roboto', arial, sans-serif;
 }
 
-#greeting-container {
-  margin-top: 20px;
+body {
+    margin: 0%;
+}
+
+#sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding: 15px 20px 15px 20px;
+    background-color: #0F9D58;
+    overflow-x: hidden;
+}
+
+#sidenav-footer {
+    position: fixed; 
+    bottom: 0px;
+}
+
+#sidenav-footer p {
+    font-size: 1.1em;
+    color: #FFF;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    clip-path: circle(100px at center);
+}
+
+#sidenav h1, #sidenav h2 {
+    text-align: center;
+    color: #FFF;
+    margin: 10px 0px 10px 0px;
+}
+
+#content-container {
+    margin-left: 240px;
+}
+
+#header {
+    background-color: #4285F4;
+    height: 75px;
+    width: 100%;
+}
+
+#content {
+    padding: 0px 10px;
 }
