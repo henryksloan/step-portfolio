@@ -68,6 +68,9 @@ body {
     background-color: #4285F4;
     height: 75px;
     width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
 }
 
 .tab-bar {
@@ -89,6 +92,7 @@ body {
 
 #content {
     padding: 0px 10px 0px 12px;
+    margin-top: 90px;
 }
 
 section {
@@ -105,4 +109,25 @@ section p {
     font-size: 1.1em;
     margin-top: 0px;
     max-width: 900px;
+}
+
+.placeholder {
+    display: inline-block;
+    background-color: #DB4437;
+    width: 200px;
+    height: 200px;
+    margin: 0px 16px 16px 0px;
+}
+
+.placeholder-lg {
+    display: inline-block;
+    background-color: #F4B400;
+    width: 300px;
+    height: 300px;
+    margin: 0px 16px 16px 0px;
+}
+
+.skill-list {
+    display: inline-block;
+    margin-right: 45px;
 }
