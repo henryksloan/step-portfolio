@@ -80,7 +80,6 @@ body {
 }
 
 .tab-bar li {
-    color: #FFF;
     font-weight: bold;
     font-size: 1.3em;
     display: table-cell;
@@ -88,6 +87,11 @@ body {
     list-style-type: none;
     padding: 0px 20px 0px 20px;
     vertical-align: middle;
+}
+
+.tab-bar a {
+    color: #FFF;
+    text-decoration: none;
 }
 
 #content {
