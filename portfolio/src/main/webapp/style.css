@@ -25,6 +25,10 @@ body {
     left: 16px;
 }
 
+#sidenav-footer a {
+    text-decoration: none;
+}
+
 #sidenav-footer div {
     display: flex;
     align-items: center;
@@ -84,5 +88,21 @@ body {
 }
 
 #content {
-    padding: 0px 10px;
+    padding: 0px 10px 0px 12px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+section h1 {
+    font-size: 1.9em;
+    text-decoration: underline;
+    margin-bottom: 8px;
+}
+
+section p {
+    font-size: 1.1em;
+    margin-top: 0px;
+    max-width: 900px;
 }
