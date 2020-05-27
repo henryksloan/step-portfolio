@@ -14,19 +14,34 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    padding: 15px 20px 15px 20px;
+    padding: 15px 25px 15px 25px;
     background-color: #0F9D58;
     overflow-x: hidden;
 }
 
 #sidenav-footer {
     position: fixed; 
-    bottom: 0px;
+    bottom: 15px;
+    left: 16px;
+}
+
+#sidenav-footer div {
+    display: flex;
+    align-items: center;
+    height: 45px;
 }
 
 #sidenav-footer p {
     font-size: 1.1em;
     color: #FFF;
+}
+
+#sidenav-footer .fab, #sidenav-footer .fas {
+    font-size: 1.2em;
+    display: inline;
+    color: white;
+    float: left;
+    margin-right: 4px;
 }
 
 .profile-img {
@@ -42,13 +57,30 @@ body {
 }
 
 #content-container {
-    margin-left: 240px;
+    margin-left: 250px;
 }
 
 #header {
     background-color: #4285F4;
     height: 75px;
     width: 100%;
+}
+
+.tab-bar {
+    margin: 0;
+    position: relative;
+    display:table-row;
+}
+
+.tab-bar li {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 1.3em;
+    display: table-cell;
+    height: 75px;
+    list-style-type: none;
+    padding: 0px 20px 0px 20px;
+    vertical-align: middle;
 }
 
 #content {
