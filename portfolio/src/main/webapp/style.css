@@ -115,6 +115,26 @@ section p {
     max-width: 900px;
 }
 
+section hr {
+    margin-top: 25px;
+}
+
+#life>div {
+    display: table;
+}
+
+#life>div>div {
+    display: table-cell;
+}
+
+.life-left {
+    float: left;
+}
+
+.life-right {
+    float: right;
+}
+
 .placeholder {
     display: inline-block;
     background-color: #DB4437;
