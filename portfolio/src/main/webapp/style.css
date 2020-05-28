@@ -127,7 +127,7 @@ section hr {
 }
 
 .life-inverted {
-    width: 816px;
+    width: 916px;
 }
 
 #life>div>div {
@@ -136,7 +136,7 @@ section hr {
 
 #life p {
     position: absolute;
-    width: 600px;
+    width: 640px;
     top: 50%;
     transform: translate(0, -50%);
 }
@@ -149,19 +149,12 @@ section hr {
     float: right;
 }
 
-.placeholder {
-    display: inline-block;
-    background-color: #DB4437;
-    width: 200px;
-    height: 200px;
-    margin: 0px 16px 16px 0px;
-}
-
 #life img {
     display: inline-block;
-    width: 200px;
-    height: 200px;
-    margin: 0px 16px 16px 0px;
+    width: 250px;
+    height: 250px;
+    margin: 0px 24px 24px 0px;
+    clip-path: circle(120px at center);
 }
 
 .placeholder-lg {
