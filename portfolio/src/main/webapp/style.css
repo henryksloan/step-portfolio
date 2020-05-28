@@ -127,7 +127,7 @@ section hr {
 }
 
 .life-inverted {
-    width: 1116px;
+    width: 816px;
 }
 
 #life>div>div {
@@ -136,7 +136,7 @@ section hr {
 
 #life p {
     position: absolute;
-    width: 900px;
+    width: 600px;
     top: 50%;
     transform: translate(0, -50%);
 }
