@@ -121,10 +121,24 @@ section hr {
 
 #life>div {
     display: table;
+    vertical-align: middle;
+    height: 200px;
+    position: relative;
+}
+
+.life-inverted {
+    width: 1116px;
 }
 
 #life>div>div {
     display: table-cell;
+}
+
+#life p {
+    position: absolute;
+    width: 900px;
+    top: 50%;
+    transform: translate(0, -50%);
 }
 
 .life-left {
@@ -143,9 +157,23 @@ section hr {
     margin: 0px 16px 16px 0px;
 }
 
+#life img {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 0px 16px 16px 0px;
+}
+
 .placeholder-lg {
     display: inline-block;
     background-color: #F4B400;
+    width: 300px;
+    height: 300px;
+    margin: 0px 16px 16px 0px;
+}
+
+#projects img {
+    display: inline-block;
     width: 300px;
     height: 300px;
     margin: 0px 16px 16px 0px;
