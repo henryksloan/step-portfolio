@@ -107,6 +107,7 @@ section h1 {
     font-size: 1.9em;
     text-decoration: underline;
     margin-bottom: 8px;
+    text-decoration-color: #DB4437;
 }
 
 section p {
@@ -117,6 +118,7 @@ section p {
 
 section hr {
     margin-top: 25px;
+    border-color: #DB4437;
 }
 
 #life>div {
