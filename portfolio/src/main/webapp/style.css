@@ -95,7 +95,7 @@ body {
 }
 
 #content {
-    padding: 0px 10px 0px 12px;
+    padding: 0px 10px 0px 16px;
     margin-top: 90px;
 }
 
@@ -115,9 +115,50 @@ section p {
     max-width: 900px;
 }
 
+section hr {
+    margin-top: 25px;
+}
+
+#life>div {
+    display: table;
+    vertical-align: middle;
+    height: 200px;
+    position: relative;
+}
+
+.life-inverted {
+    width: 816px;
+}
+
+#life>div>div {
+    display: table-cell;
+}
+
+#life p {
+    position: absolute;
+    width: 600px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.life-left {
+    float: left;
+}
+
+.life-right {
+    float: right;
+}
+
 .placeholder {
     display: inline-block;
     background-color: #DB4437;
+    width: 200px;
+    height: 200px;
+    margin: 0px 16px 16px 0px;
+}
+
+#life img {
+    display: inline-block;
     width: 200px;
     height: 200px;
     margin: 0px 16px 16px 0px;
@@ -131,7 +172,19 @@ section p {
     margin: 0px 16px 16px 0px;
 }
 
-.skill-list {
+#projects img {
     display: inline-block;
+    width: 300px;
+    height: 300px;
+    margin: 0px 16px 16px 0px;
+}
+
+.skill-list {
+    display: inline-table;
     margin-right: 45px;
+}
+
+.skill-list h2 {
+    text-align: center;
+    margin: 0px;
 }
