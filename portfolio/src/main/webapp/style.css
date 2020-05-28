@@ -95,7 +95,7 @@ body {
 }
 
 #content {
-    padding: 0px 10px 0px 12px;
+    padding: 0px 10px 0px 16px;
     margin-top: 90px;
 }
 
@@ -180,6 +180,11 @@ section hr {
 }
 
 .skill-list {
-    display: inline-block;
+    display: inline-table;
     margin-right: 45px;
+}
+
+.skill-list h2 {
+    text-align: center;
+    margin: 0px;
 }
