@@ -108,6 +108,8 @@ section h1 {
     text-decoration: underline;
     margin-bottom: 8px;
     text-decoration-color: #DB4437;
+    margin-top: -90px;
+    padding-top: 90px;
 }
 
 section p {
