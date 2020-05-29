@@ -7,7 +7,7 @@
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </head>
-  <body>
+  <body onload="getGreeting()">
     <div id="sidenav">
         <h1>Henry Sloan</h1>
         <img src="images/pic.jpeg" class="profile-img" />
@@ -32,6 +32,7 @@
                 <li><a href="#life">Life</a></li>
                 <li><a href="#skills">Skills</a></li>
             </ul>
+            <p id="greeting-container"></p>
         </div>
         <div id="content">
             <section id="about">

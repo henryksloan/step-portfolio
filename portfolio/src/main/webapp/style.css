@@ -223,3 +223,15 @@ section hr {
 .skill-list ul {
     margin-top: 4px;
 }
+
+#greeting-container {
+    position: fixed;
+    right: 25px;
+    top: 4px;
+    font-size: 1.3em;
+    color: #4285F4;
+}
+
+#greeting-container:hover {
+    color: #FFF;
+}
