@@ -1,5 +1,4 @@
 html * {
-    color: #000;
     font-family: 'Roboto', arial, sans-serif;
 }
 
@@ -105,17 +104,22 @@ section {
 
 section h1 {
     font-size: 1.9em;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     margin-bottom: 8px;
     text-decoration-color: #DB4437;
     margin-top: -90px;
     padding-top: 90px;
+    margin-left: 16px;
 }
 
 section p {
     font-size: 1.1em;
     margin-top: 0px;
     max-width: 900px;
+}
+
+section>p {
+    padding-left: 16px;
 }
 
 section hr {
@@ -126,16 +130,16 @@ section hr {
 #life>div {
     display: table;
     vertical-align: middle;
+    width: 916px;
     height: 200px;
     position: relative;
-}
-
-.life-inverted {
-    width: 916px;
+    padding: 2px 4px 0px 8px;
 }
 
 #life>div>div {
     display: table-cell;
+    height: 250px;
+    width: 640px;
 }
 
 #life p {
@@ -157,7 +161,7 @@ section hr {
     display: inline-block;
     width: 250px;
     height: 250px;
-    margin: 0px 24px 24px 0px;
+    margin: 0px 24px 4px 0px;
     clip-path: circle(120px at center);
 }
 
@@ -173,7 +177,32 @@ section hr {
     display: inline-block;
     width: 300px;
     height: 300px;
-    margin: 0px 16px 16px 0px;
+    margin: 16px;
+}
+
+.card {
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin: 12px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.project-info {
+    /* display: inline-block; */
+    float: right;
+    padding: 12px;
+}
+
+.project-info p {
+    width: 400px;
+}
+
+.project-info a {
+    font-size: 1.1em;
 }
 
 .skill-list {
@@ -184,4 +213,9 @@ section hr {
 .skill-list h2 {
     text-align: center;
     margin: 0px;
+    margin-left: -16px;
+}
+
+.skill-list ul {
+    margin-top: 4px;
 }
