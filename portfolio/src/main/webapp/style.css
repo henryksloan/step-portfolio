@@ -173,7 +173,23 @@ section hr {
     display: inline-block;
     width: 300px;
     height: 300px;
-    margin: 0px 16px 16px 0px;
+    margin: 16px;
+}
+
+.project-card {
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin: 16px;
+}
+
+.project-info {
+    /* display: inline-block; */
+    float: right;
+    padding: 12px;
+}
+
+.project-info p {
+    width: 400px;
 }
 
 .skill-list {
