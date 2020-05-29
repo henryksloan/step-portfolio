@@ -1,5 +1,4 @@
 html * {
-    color: #000;
     font-family: 'Roboto', arial, sans-serif;
 }
 
@@ -190,6 +189,11 @@ section hr {
 
 .project-info p {
     width: 400px;
+}
+
+.project-info a {
+    font-size: 1.1em;
+    display: block;
 }
 
 .skill-list {
