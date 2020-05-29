@@ -84,13 +84,14 @@ body {
     display: table-cell;
     height: 75px;
     list-style-type: none;
-    padding: 0px 20px 0px 20px;
     vertical-align: middle;
 }
 
 .tab-bar a {
     color: #FFF;
     text-decoration: none;
+    display: block;
+    padding: 25px 20px 25px 20px;
 }
 
 #content {
