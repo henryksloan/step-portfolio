@@ -84,13 +84,18 @@ body {
     display: table-cell;
     height: 75px;
     list-style-type: none;
-    padding: 0px 20px 0px 20px;
     vertical-align: middle;
 }
 
 .tab-bar a {
     color: #FFF;
     text-decoration: none;
+    display: block;
+    padding: 25px 20px 25px 20px;
+}
+
+.tab-bar a:hover {
+    background: rgba(0,0,0,0.08);
 }
 
 #content {
@@ -127,7 +132,7 @@ section hr {
     border-color: #DB4437;
 }
 
-#life>div {
+/* #life>div {
     display: table;
     vertical-align: middle;
     width: 916px;
@@ -155,29 +160,17 @@ section hr {
 
 .life-right {
     float: right;
-}
+} */
 
-#life img {
-    display: inline-block;
-    width: 250px;
-    height: 250px;
-    margin: 0px 24px 4px 0px;
-    clip-path: circle(120px at center);
-}
-
-.placeholder-lg {
-    display: inline-block;
-    background-color: #F4B400;
-    width: 300px;
-    height: 300px;
-    margin: 0px 16px 16px 0px;
-}
-
-#projects img {
+#projects img, #life img {
     display: inline-block;
     width: 300px;
     height: 300px;
     margin: 16px;
+}
+
+#life img {
+    clip-path: circle(140px at center);
 }
 
 .card {
@@ -192,9 +185,20 @@ section hr {
 }
 
 .project-info {
-    /* display: inline-block; */
     float: right;
     padding: 12px;
+}
+
+#life .project-info {
+    height: 312px;
+    width: 400px;
+    position: relative;
+}
+
+#life p {
+    top: 50%;
+    position: absolute;
+    transform: translate(0,-50%);
 }
 
 .project-info p {
