@@ -224,12 +224,21 @@ section hr {
     margin-top: 4px;
 }
 
-#comments .card {
-    margin: 8px;
-    padding: 14px;
-    width: 680px;
+#comments-area {
+    background-color: rgba(0,0,0,0.04);
+    width: 714.4px;
+    padding: 8px 6px 8px 8px;
+    margin-top: 0;
+    box-sizing: border-box;
 }
 
-#comments .card p {
+.comment {
+    margin: 8px 0;
+    padding: 14px 4px 14px 14px;
+    width: 680px;
+    background-color: white;
+}
+
+.comment p {
     margin: 0;
 }
