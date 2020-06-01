@@ -56,7 +56,7 @@ body {
 #sidenav h1, #sidenav h2 {
     text-align: center;
     color: #FFF;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0 10px 0;
 }
 
 #content-container {
@@ -99,7 +99,7 @@ body {
 }
 
 #content {
-    padding: 0px 10px 0px 16px;
+    padding: 0 10px 0 16px;
     margin-top: 90px;
 }
 
@@ -119,7 +119,7 @@ section h1 {
 
 section p {
     font-size: 1.1em;
-    margin-top: 0px;
+    margin-top: 0;
     max-width: 900px;
 }
 
@@ -138,7 +138,7 @@ section hr {
     width: 916px;
     height: 200px;
     position: relative;
-    padding: 2px 4px 0px 8px;
+    padding: 2px 4px 0 8px;
 }
 
 #life>div>div {
@@ -216,10 +216,43 @@ section hr {
 
 .skill-list h2 {
     text-align: center;
-    margin: 0px;
+    margin: 0;
     margin-left: -16px;
 }
 
 .skill-list ul {
     margin-top: 4px;
+}
+
+#comments-area {
+    background-color: rgba(0,0,0,0.04);
+    width: 714.4px;
+    padding: 8px 6px 8px 8px;
+    margin-top: 0;
+    box-sizing: border-box;
+}
+
+.comment {
+    margin: 8px 0;
+    padding: 14px 4px 14px 14px;
+    width: 680px;
+    background-color: white;
+}
+
+.comment p {
+    margin: 0;
+}
+
+#create-comment {
+    margin: 8px 0;
+    padding: 14px 4px 14px 14px;
+    width: 680px;
+    background-color: #FFF;
+}
+
+#new-comment {
+    width: 88%;
+    font-size: 1.1em;
+    margin-right: 8px;
+    box-sizing: border-box;
 }
