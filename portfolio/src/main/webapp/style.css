@@ -242,3 +242,17 @@ section hr {
 .comment p {
     margin: 0;
 }
+
+#create-comment {
+    margin: 8px 0;
+    padding: 14px 4px 14px 14px;
+    width: 680px;
+    background-color: #FFF;
+}
+
+#new-comment {
+    width: 88%;
+    font-size: 1.1em;
+    margin-right: 8px;
+    box-sizing: border-box;
+}

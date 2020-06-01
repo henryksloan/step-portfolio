@@ -31,10 +31,6 @@ public class DataServlet extends HttpServlet {
 
   public DataServlet() {
     comments = new ArrayList<String>();
-    comments.add("Hi, how are you doing?!"); 
-    comments.add("This is a test comment -- it is long"); 
-    comments.add("This statement is false");
-    comments.add("^ That statement is false ^");
   }
 
   private String commentsToJSON() {
@@ -48,5 +44,11 @@ public class DataServlet extends HttpServlet {
     String json = commentsToJSON();
     response.setContentType("text/json;");
     response.getWriter().println(json);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    comments.add(request.getParameter("new-comment"));
+    response.sendRedirect("/index.html");
   }
 }

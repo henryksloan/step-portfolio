@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Henry Sloan</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
   </head>
   <body onload="getComments()">
     <div id="sidenav">
@@ -139,6 +140,13 @@
             <section id="comments">
                 <h1>Comments</h1>
                 <div id="comments-area" class="card">
+                    <span id="comments-container"></span>
+                    <div id="create-comment" class="card">
+                        <form action="/data" method="POST">
+                            <input type="text" id="new-comment" name="new-comment" placeholder="Type your comment here">
+                            <input type="submit" id="submit-comment">
+                        </form>
+                    </div>
                 </div>
             </section>
         </div>
