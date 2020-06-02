@@ -7,7 +7,7 @@ function formatComment(comment) {
 
 function getComments() {
   let comments = document.getElementById('comments-container');
-  fetch('/data').then(response => response.json())
+  fetch('/data?num-comments=4').then(response => response.json())
   .then((json) => {
     json.forEach(comment => {
       comments.innerHTML += formatComment(comment);
