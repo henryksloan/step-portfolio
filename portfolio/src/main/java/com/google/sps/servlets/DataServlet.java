@@ -30,15 +30,9 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns some example content. */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-  ArrayList<String> comments;
-
-  public DataServlet() {
-    comments = new ArrayList<String>();
-  }
 
   private String commentsToJSON(ArrayList<String> comments) {
     Gson gson = new Gson();
@@ -48,7 +42,6 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // String json = commentsToJSON();
     ArrayList<String> comments = new ArrayList<>();
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
