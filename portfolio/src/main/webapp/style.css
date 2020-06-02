@@ -109,9 +109,7 @@ section {
 
 section h1 {
     font-size: 1.9em;
-    /* text-decoration: underline; */
     margin-bottom: 8px;
-    text-decoration-color: #DB4437;
     margin-top: -90px;
     padding-top: 90px;
     margin-left: 16px;
@@ -224,6 +222,14 @@ section hr {
     margin-top: 4px;
 }
 
+#comments {
+    width: 725px;
+}
+
+#comments h1 {
+    display: inline-block;
+}
+
 #comments-area {
     background-color: rgba(0,0,0,0.04);
     width: 714.4px;
@@ -255,4 +261,11 @@ section hr {
     font-size: 1.1em;
     margin-right: 8px;
     box-sizing: border-box;
+}
+
+#num-comments-container {
+    float: right;
+    display: inline-block;
+    padding-top: 8px;
+    font-size: 1.1em;
 }
