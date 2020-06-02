@@ -31,43 +31,20 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
-/** Servlet that returns comments and allows for new comments. */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
-
-  private String commentsToJSON(ArrayList<String> comments) {
-    Gson gson = new Gson();
-    String json = gson.toJson(comments);
-    return json;
-  }
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    ArrayList<String> comments = new ArrayList<>();
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-    int num_comments = Integer.parseInt(request.getParameter("num-comments"));
-    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(num_comments))) {
-        comments.add((String) entity.getProperty("content"));
-    }
-    String json = commentsToJSON(comments);
-    response.setContentType("text/json;");
-    response.getWriter().println(json);
-  }
+/** Servlet that handles bulk deletion of comments. */
+@WebServlet("/delete-data")
+public class DeleteServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    long timestamp = System.currentTimeMillis();
-    String comment = request.getParameter("new-comment");
-
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("content", comment);
-    commentEntity.setProperty("timestamp", timestamp);
-
+    Query query = new Query("Comment");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
+    PreparedQuery results = datastore.prepare(query);
+    for (Entity entity : results.asIterable()) {
+        datastore.delete(entity.key);
+    }
 
-    response.sendRedirect("/index.html#comments");
+    response.setContentType("text/plain;");
+    response.getWriter().println("");
   }
 }

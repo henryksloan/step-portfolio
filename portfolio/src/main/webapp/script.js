@@ -17,6 +17,10 @@ function getComments() {
   });
 }
 
+function deleteComments() {
+  fetch('/delete-data').then((_) => { getComments(); });
+}
+
 $(document).ready(function() {
     $('#submit-comment').prop('disabled',true);
     $('#new-comment').keyup(function() {
