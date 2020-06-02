@@ -18,7 +18,7 @@ function getComments() {
 }
 
 function deleteComments() {
-  fetch('/delete-data').then((_) => { getComments(); });
+  fetch('/delete-data', {method: 'POST'}).then((_) => { getComments(); });
 }
 
 $(document).ready(function() {
