@@ -26,19 +26,14 @@ import com.google.gson.Gson;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns some example content. */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-  ArrayList<String> comments;
-
-  public DataServlet() {
-    comments = new ArrayList<String>();
-  }
 
   private String commentsToJSON(ArrayList<String> comments) {
     Gson gson = new Gson();
@@ -48,12 +43,12 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // String json = commentsToJSON();
     ArrayList<String> comments = new ArrayList<>();
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    for (Entity entity : results.asIterable()) {
+    int num_comments = Integer.parseInt(request.getParameter("num-comments"));
+    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(num_comments))) {
         comments.add((String) entity.getProperty("content"));
     }
     String json = commentsToJSON(comments);
@@ -65,7 +60,6 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     long timestamp = System.currentTimeMillis();
     String comment = request.getParameter("new-comment");
-    comments.add(comment);
 
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("content", comment);
@@ -74,6 +68,6 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
-    response.sendRedirect("/index.html");
+    response.sendRedirect("/index.html#comments");
   }
 }

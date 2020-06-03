@@ -74,7 +74,6 @@
                         <p>A fake social networking platform intended for use in social media privacy and usability research. It was designed and implemented in collaboration with privacy researchers as a part of adaptive privacy design research.</p>
                         <a href="https://github.com/bakman329/bakman329.github.io">Github</a>
                         <br />
-                        <!-- a href="https://bakman329.github.io">Website</a !-->
                     </div>
                 </div>
                 <hr>
@@ -139,6 +138,16 @@
             </section>
             <section id="comments">
                 <h1>Comments</h1>
+                <div id="num-comments-container">
+                    <label for="num-comments">Comments shown:</label>
+                    <select name="num-comments" id="num-comments" onchange="getComments()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
                 <div id="comments-area" class="card">
                     <span id="comments-container"></span>
                     <div id="create-comment" class="card">
