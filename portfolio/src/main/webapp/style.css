@@ -322,3 +322,28 @@ section hr {
     height: 45px;
     clip-path: circle(22px at center);
 }
+
+#popup-container {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 5;
+}
+
+#popup {
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+
+.body-no-scroll {
+    overflow: hidden;
+}

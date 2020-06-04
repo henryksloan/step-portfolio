@@ -24,6 +24,17 @@ function deleteComments() {
 function nicknamePrompt() {
     // {Popup prompt with form that posts to server}
     // Server should try to register nickname, and succeed iff uuid doesn't already have one
+    let popup_container = document.getElementById("popup-container");
+    popup_container.style.display = "block";
+    let body = document.getElementsByTagName("body")[0];
+    body.classList.add("body-no-scroll");
+}
+
+function closePopup() {
+    let popup_container = document.getElementById("popup-container");
+    popup_container.style.display = "none";
+    let body = document.getElementsByTagName("body")[0];
+    body.classList.remove("body-no-scroll");
 }
 
 $(document).ready(function() {
