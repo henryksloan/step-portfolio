@@ -130,36 +130,6 @@ section hr {
     border-color: #DB4437;
 }
 
-/* #life>div {
-    display: table;
-    vertical-align: middle;
-    width: 916px;
-    height: 200px;
-    position: relative;
-    padding: 2px 4px 0 8px;
-}
-
-#life>div>div {
-    display: table-cell;
-    height: 250px;
-    width: 640px;
-}
-
-#life p {
-    position: absolute;
-    width: 640px;
-    top: 50%;
-    transform: translate(0, -50%);
-}
-
-.life-left {
-    float: left;
-}
-
-.life-right {
-    float: right;
-} */
-
 #projects img, #life img {
     display: inline-block;
     width: 300px;
@@ -275,4 +245,16 @@ section hr {
     font-size: 1.1em;
     padding-left: 12px;
     cursor: pointer;
+}
+
+#login-button {
+    position: fixed;
+    top: 24px;
+    right: 40px;
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #4285F4;
+    font-weight: bold;
 }
