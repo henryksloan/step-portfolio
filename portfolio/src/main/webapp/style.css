@@ -247,7 +247,6 @@ section hr {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
 #user-area {
     position: fixed;
     top: 18px;
@@ -285,16 +284,16 @@ section hr {
     margin-left: 8px;
 }
 
-#login-button {
+#user-area {
     position: fixed;
     top: 18px;
     right: 40px;
 }
 
-#login-button {
-    position: fixed;
-    top: 24px;
-    right: 40px;
+#user-area * {
+    display: inline-block;
+    float: left;
+    margin-left: 8px;
 }
 
 .user-button {
