@@ -1,5 +1,7 @@
-function formatComment(comment) {
-    out = "<div class=\"comment card\"><p>";
+function formatComment(comment, nickname) {
+    out = "<div class=\"comment card\"><h3>"
+    out += nickname;
+    out += "</h3><p>";
     out += comment;
     out += "</p></div>";
     return out;
@@ -12,7 +14,7 @@ function getComments() {
   fetch('/data?num-comments=' + num_comments).then(response => response.json())
   .then((json) => {
     json.forEach(comment => {
-      comments.innerHTML += formatComment(comment);
+      comments.innerHTML += formatComment(comment.content, comment.nickname);
     })
   });
 }
@@ -50,6 +52,17 @@ $(document).ready(function() {
         nickname.innerHTML = (json.logged_in && json.nickname == "")
             ? "<a class=\"user-button\" onclick=\"nicknamePrompt()\">Set a nickname</a>"
             : json.nickname;
+
+        if (!json.logged_in) {
+            create_comment = document.getElementById("create-comment");
+            create_comment.style.width = "400px";
+            create_comment.innerHTML = "<h3 style=\"margin: 0;\">Login to comment</h3>";
+        }
+        else if (json.nickname == "") {
+            create_comment = document.getElementById("create-comment");
+            create_comment.style.width = "400px";
+            create_comment.innerHTML = "<h3 style=\"margin: 0;\">Set a nickname to comment</h3>";
+        }
     });
 
     $('#submit-comment').prop('disabled',true);
