@@ -44,11 +44,11 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     ArrayList<String> comments = new ArrayList<>();
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
+        Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
     int num_comments = Integer.parseInt(request.getParameter("num-comments"));
-    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(num_comments))) {
+    for (Entity entity : results.asList(FetchOptions.Builder.withLimit(num_comments))) {
         comments.add((String) entity.getProperty("content"));
     }
     String json = commentsToJSON(comments);
