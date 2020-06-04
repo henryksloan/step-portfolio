@@ -157,7 +157,7 @@
                     <div id="create-comment" class="card">
                         <form action="/data" method="POST">
                             <input type="text" id="new-comment" name="new-comment" placeholder="Type your comment here">
-                            <input type="submit" value="submit" id="submit-comment">
+                            <input type="submit" value="Submit" id="submit-comment">
                         </form>
                     </div>
                 </div>
@@ -166,7 +166,14 @@
         </div>
     </div>
     <div id="popup-container">
-        <div id="popup" class="card" onclick="closePopup()">
+        <div id="popup" class="card">
+            <span class="close-x" onclick="closePopup()">&times;</span>
+            <h2>Set a nickname</h2>
+            <form action="/nickname" method="POST">
+                <input type="text" id="nickname-input" name="nickname" placeholder="Nickname">
+                <input type="submit" value="Submit" id="submit-nickname">
+            </form>
+            <p>Your nickname will show up when you make up a comment. You can't change it once you pick, so be careful!</p>
         </div>
     </div>
   </body>

@@ -47,7 +47,7 @@ $(document).ready(function() {
         login_button.innerText = (json.logged_in)
             ? "Logout"
             : "Login";
-        nickname.innerHTML = (json.nickname == "")
+        nickname.innerHTML = (json.logged_in && json.nickname == "")
             ? "<a class=\"user-button\" onclick=\"nicknamePrompt()\">Set a nickname</a>"
             : json.nickname;
     });
