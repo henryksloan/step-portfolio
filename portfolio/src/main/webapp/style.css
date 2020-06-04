@@ -247,14 +247,40 @@ section hr {
     cursor: pointer;
 }
 
-#login-button {
+#user-area {
     position: fixed;
-    top: 24px;
+    top: 18px;
     right: 40px;
+}
+
+#user-area * {
+    display: inline-block;
+    float: left;
+    margin-left: 8px;
+}
+
+.user-button {
     background: white;
     padding: 5px;
     border-radius: 5px;
     text-decoration: none;
     color: #4285F4;
     font-weight: bold;
+    margin-top: 10px
+}
+
+#nickname {
+    color: #fff;
+    font-weight: bold;
+}
+
+#nickname a {
+    float: none;
+    cursor: pointer;
+}
+
+.profile-thumb {
+    width: 45px;
+    height: 45px;
+    clip-path: circle(22px at center);
 }
