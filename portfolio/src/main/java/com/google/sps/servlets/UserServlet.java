@@ -34,27 +34,27 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.api.users.User;
 
 /** Servlet that handles user authentication. */
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 
   private class LoginStatus {
-    @SerializedName("logged_in")
     private boolean logged_in;
-
-    @SerializedName("url")
     private String url;
+    private String nickname;
 
-    public LoginStatus(boolean logged_in, String url) {
+    public LoginStatus(boolean logged_in, String url, String nickname) {
       this.logged_in = logged_in;
       this.url = url;
+      this.nickname = nickname;
     }
   }
 
-  String makeJSONStatus(boolean logged_in, String url) {
+  String makeJSONStatus(boolean logged_in, String url, String nickname) {
     Gson gson = new Gson();
-    String json = gson.toJson(new LoginStatus(logged_in, url));
+    String json = gson.toJson(new LoginStatus(logged_in, url, nickname));
     return json;
   }
 
@@ -67,7 +67,23 @@ public class UserServlet extends HttpServlet {
         ? userService.createLogoutURL("/")
         : userService.createLoginURL("/");
 
+    User user = userService.getCurrentUser();
+    String id = (user != null) ? user.getUserId() : "";
+    String nickname = getUserNickname(id);
+
     response.setContentType("text/json;");
-    response.getWriter().println(makeJSONStatus(logged_in, url));
+    response.getWriter().println(makeJSONStatus(logged_in, url, nickname));
+  }
+
+  private String getUserNickname(String id) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query = new Query("User")
+        .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
+
+    PreparedQuery results = datastore.prepare(query);
+    Entity entity = results.asSingleEntity();
+    return (entity == null)
+        ? ""
+        : (String) entity.getProperty("nickname");
   }
 }
