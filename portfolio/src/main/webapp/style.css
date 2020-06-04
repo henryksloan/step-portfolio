@@ -259,6 +259,12 @@ section hr {
     margin-left: 8px;
 }
 
+#login-button {
+    position: fixed;
+    top: 24px;
+    right: 40px;
+}
+
 .user-button {
     background: white;
     padding: 5px;

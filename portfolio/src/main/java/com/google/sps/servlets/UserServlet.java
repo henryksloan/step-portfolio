@@ -41,6 +41,7 @@ import com.google.appengine.api.users.User;
 public class UserServlet extends HttpServlet {
 
   private class LoginStatus {
+<<<<<<< HEAD
     private boolean logged_in;
     private String url;
     private String nickname;
