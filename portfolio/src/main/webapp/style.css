@@ -277,6 +277,7 @@ section hr {
 #nickname a {
     float: none;
     cursor: pointer;
+    display: inline;
 }
 
 .profile-thumb {
