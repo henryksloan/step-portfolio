@@ -269,3 +269,10 @@ section hr {
     padding-top: 8px;
     font-size: 1.1em;
 }
+
+#delete-button {
+    color: #be0000;
+    font-size: 1.1em;
+    padding-left: 12px;
+    cursor: pointer;
+}
