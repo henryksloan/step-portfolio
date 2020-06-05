@@ -53,9 +53,21 @@ public class NicknameServlet extends HttpServlet {
     Query query = new Query("User")
         .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
 
+    // Search for the user(s) with the matching ID
     PreparedQuery results = datastore.prepare(query);
-    Entity entity = results.asSingleEntity();
-    if (entity != null) {
+    try {
+        // There should be either zero or one results, so try to treat it as one user
+        Entity entity = results.asSingleEntity();
+        if (entity != null) { // Redirect if this user already has a username registered
+            // TODO: Redirect to explanatory error page
+            response.sendRedirect("/index.html");
+            return;
+        }
+    }
+    catch (PreparedQuery.TooManyResultsException e) {
+        // There are multiple users with this ID; end the registration
+        // This is practically impossible but theoretically dangerous 
+        // TODO: Redirect to explanatory error page
         response.sendRedirect("/index.html");
         return;
     }
