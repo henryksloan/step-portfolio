@@ -221,8 +221,12 @@ section hr {
 }
 
 .comment h3 {
-    margin: 0;
-    margin-bottom: 6px;
+    display: inline-block;
+    margin: 0 6px 6px 0;
+}
+
+.time-passed {
+    display: inline-block;
 }
 
 .comment p {
@@ -259,7 +263,7 @@ section hr {
 
 #user-area {
     position: fixed;
-    top: 18px;
+    top: 15px;
     right: 40px;
     font-size: 1.1em;
 }
