@@ -259,37 +259,6 @@ section hr {
     margin-left: 8px;
 }
 
-#login-button {
-    position: fixed;
-    top: 18px;
-    right: 40px;
-}
-
-#user-area * {
-    display: inline-block;
-    float: left;
-    margin-left: 8px;
-}
-
-
-#login-button {
-    position: fixed;
-    top: 18px;
-    right: 40px;
-}
-
-#user-area * {
-    display: inline-block;
-    float: left;
-    margin-left: 8px;
-}
-
-#login-button {
-    position: fixed;
-    top: 18px;
-    right: 40px;
-}
-
 .user-button {
     background: white;
     padding: 5px;
@@ -315,4 +284,37 @@ section hr {
     width: 45px;
     height: 45px;
     clip-path: circle(22px at center);
+}
+
+#popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 5;
+}
+
+#popup {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    text-align: center;
+}
+
+.body-no-scroll {
+    overflow: hidden;
+}
+
+.close-x {
+    cursor: pointer;
+    font-size: 1.5em;
+    position: absolute;
+    right: 10px;
+    top: 5px;
 }
