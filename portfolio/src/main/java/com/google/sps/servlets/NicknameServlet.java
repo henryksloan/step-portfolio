@@ -31,20 +31,41 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
-/** Servlet that handles bulk deletion of comments. */
-@WebServlet("/delete-data")
-public class DeleteServlet extends HttpServlet {
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.api.users.User;
+
+/** Servlet that allows for adding of nicknames. */
+@WebServlet("/nickname")
+public class NicknameServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Comment");
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-    for (Entity entity : results.asIterable()) {
-        // datastore.delete(entity.getKey());
+    UserService userService = UserServiceFactory.getUserService();
+    User user = userService.getCurrentUser();
+    if (user == null) {
+        response.sendRedirect("/index.html");
+        return;
     }
 
-    response.setContentType("text/plain;");
-    response.getWriter().println("");
+    String id = user.getUserId();
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query = new Query("User")
+        .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
+
+    PreparedQuery results = datastore.prepare(query);
+    Entity entity = results.asSingleEntity();
+    if (entity != null) {
+        response.sendRedirect("/index.html");
+        return;
+    }
+
+    String nickname = request.getParameter("nickname");
+    Entity userEntity = new Entity("User");
+    userEntity.setProperty("id", id);
+    userEntity.setProperty("nickname", nickname);
+    datastore.put(userEntity);
+
+    response.sendRedirect("/index.html");
   }
 }

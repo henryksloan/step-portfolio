@@ -33,6 +33,10 @@
                 <li><a href="#life">Life</a></li>
                 <li><a href="#skills">Skills</a></li>
             </ul>
+            <div id="user-area">
+                <p id="nickname"></p>
+                <a id="login-button" class="user-button">Login</a>
+            </div>
         </div>
         <div id="content">
             <section id="about">
@@ -153,7 +157,7 @@
                     <div id="create-comment" class="card">
                         <form action="/data" method="POST">
                             <input type="text" id="new-comment" name="new-comment" placeholder="Type your comment here">
-                            <input type="submit" id="submit-comment">
+                            <input type="submit" value="submit" id="submit-comment">
                         </form>
                     </div>
                 </div>
