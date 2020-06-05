@@ -259,43 +259,6 @@ section hr {
     margin-left: 8px;
 }
 
-#login-button {
-    position: fixed;
-    top: 18px;
-    right: 40px;
-}
-
-#user-area * {
-    display: inline-block;
-    float: left;
-    margin-left: 8px;
-}
-
-
-#login-button {
-    position: fixed;
-    top: 18px;
-    right: 40px;
-}
-
-#user-area * {
-    display: inline-block;
-    float: left;
-    margin-left: 8px;
-}
-
-#user-area {
-    position: fixed;
-    top: 18px;
-    right: 40px;
-}
-
-#user-area * {
-    display: inline-block;
-    float: left;
-    margin-left: 8px;
-}
-
 .user-button {
     background: white;
     padding: 5px;
