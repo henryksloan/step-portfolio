@@ -206,6 +206,11 @@ section hr {
     padding: 8px 6px 8px 8px;
     margin-top: 0;
     box-sizing: border-box;
+    text-align: center;
+}
+
+#comments-container {
+    text-align: left;
 }
 
 .comment {
@@ -213,6 +218,15 @@ section hr {
     padding: 14px 4px 14px 14px;
     width: 680px;
     background-color: white;
+}
+
+.comment h3 {
+    display: inline-block;
+    margin: 0 6px 6px 0;
+}
+
+.time-passed {
+    display: inline-block;
 }
 
 .comment p {
@@ -249,8 +263,9 @@ section hr {
 
 #user-area {
     position: fixed;
-    top: 18px;
+    top: 15px;
     right: 40px;
+    font-size: 1.1em;
 }
 
 #user-area * {

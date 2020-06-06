@@ -1,6 +1,22 @@
-function formatComment(comment) {
-    out = "<div class=\"comment card\"><p>";
-    out += comment;
+function escape(string) {
+    var char_map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;'
+    };
+
+    return string.replace(/[&<>]/g, function(ch) {
+        return char_map[ch] || ch;
+    });
+}
+
+function formatComment(comment, nickname, timestamp) {
+    out = "<div class=\"comment card\"><h3>"
+    out += escape(nickname);
+    out += "</h3><p class=\"time-passed\">";
+    out += timePassed(timestamp);
+    out += "</p><p>"
+    out += escape(comment);
     out += "</p></div>";
     return out;
 }
@@ -12,9 +28,28 @@ function getComments() {
   fetch('/data?num-comments=' + num_comments).then(response => response.json())
   .then((json) => {
     json.forEach(comment => {
-      comments.innerHTML += formatComment(comment);
+      comments.innerHTML += formatComment(comment.content, comment.nickname, comment.timestamp);
     })
   });
+}
+
+function timePassed(date) {
+    let seconds = Math.floor((new Date() - date) / 1000);
+    let conversions = {
+        "year": 60*60*24*30*12,
+        "month": 60*60*24*30,
+        "day": 60*60*24,
+        "hour": 60*60,
+        "minute": 60,
+        "second": 1
+    }
+
+    for (let conversion in conversions) {
+        let converted = Math.floor(seconds/conversions[conversion])
+        if (converted >= 1 || conversion == "second") {
+            return converted + " " + conversion + ((converted === 1) ? "" : "s") + " ago";
+        }
+    }
 }
 
 function deleteComments() {
@@ -22,8 +57,6 @@ function deleteComments() {
 }
 
 function nicknamePrompt() {
-    // {Popup prompt with form that posts to server}
-    // Server should try to register nickname, and succeed iff uuid doesn't already have one
     let popup_container = document.getElementById("popup-container");
     popup_container.style.display = "block";
     let body = document.getElementsByTagName("body")[0];
@@ -35,6 +68,7 @@ function closePopup() {
     popup_container.style.display = "none";
     let body = document.getElementsByTagName("body")[0];
     body.classList.remove("body-no-scroll");
+    localStorage.setItem("popup_dismissed", true);
 }
 
 $(document).ready(function() {
@@ -50,6 +84,18 @@ $(document).ready(function() {
         nickname.innerHTML = (json.logged_in && json.nickname == "")
             ? "<a class=\"user-button\" onclick=\"nicknamePrompt()\">Set a nickname</a>"
             : json.nickname;
+
+        if (!json.logged_in) {
+            create_comment = document.getElementById("create-comment");
+            create_comment.style.width = "400px";
+            create_comment.innerHTML = "<h3 style=\"margin: 0; cursor: pointer;\" onclick=\"location.href = '" + json.url + "';\">Login to comment</h3>";
+        }
+        else if (json.nickname == "") {
+            create_comment = document.getElementById("create-comment");
+            create_comment.style.width = "400px";
+            create_comment.innerHTML = "<h3 style=\"margin: 0; cursor: pointer;\" onclick=\"nicknamePrompt()\">Set a nickname to comment</h3>";
+            if (!localStorage.getItem("popup_dismissed")) nicknamePrompt();
+        }
     });
 
     $('#submit-comment').prop('disabled',true);
