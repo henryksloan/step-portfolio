@@ -38,6 +38,7 @@ import com.google.appengine.api.users.User;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
+import com.google.cloud.translate.TranslateException;
 
 /** Servlet that returns comments and allows for new comments. */
 @WebServlet("/data")
@@ -72,13 +73,20 @@ public class DataServlet extends HttpServlet {
     }
     else {
       String original = (String) comment.getProperty("content");
-      Translate translate = TranslateOptions.getDefaultInstance().getService();
-      Translation translation =
-        translate.translate(original, Translate.TranslateOption.targetLanguage(language));
-      String new_text = translation.getTranslatedText();
-      comment.setProperty("content-" + language, new_text);
-      datastore.put(comment);
-      return new_text;
+
+      try {
+        Translate translate = TranslateOptions.getDefaultInstance().getService();
+        Translation translation =
+            translate.translate(original, Translate.TranslateOption.targetLanguage(language));
+        String new_text = translation.getTranslatedText();
+        comment.setProperty("content-" + language, new_text);
+        datastore.put(comment);
+        return new_text;
+      }
+      catch (TranslateException e) {
+          // Likely caused by authentication failure on dev server; skip translation
+          return original;
+      }
     }
   }
 
