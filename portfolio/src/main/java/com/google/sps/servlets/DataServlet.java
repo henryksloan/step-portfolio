@@ -110,7 +110,8 @@ public class DataServlet extends HttpServlet {
             (String) entity.getProperty("nickname")));
     }
     String json = commentsToJSON(comments);
-    response.setContentType("text/json;");
+    response.setContentType("text/json; charset=UTF-8");
+    response.setCharacterEncoding("UTF-8");
     response.getWriter().println(json);
   }
 
