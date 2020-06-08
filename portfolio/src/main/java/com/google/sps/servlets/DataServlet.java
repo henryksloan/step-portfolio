@@ -50,10 +50,10 @@ public class DataServlet extends HttpServlet {
       private String nickname;
 
       public Comment(String content, long timestamp, String userId, String nickname) {
-          this.content = content;
-          this.timestamp = timestamp;
-          this.userId = userId;
-          this.nickname = nickname;
+        this.content = content;
+        this.timestamp = timestamp;
+        this.userId = userId;
+        this.nickname = nickname;
       }
   }
 
@@ -61,6 +61,25 @@ public class DataServlet extends HttpServlet {
     Gson gson = new Gson();
     String json = gson.toJson(comments);
     return json;
+  }
+  
+  public String translateWithCaching(DatastoreService datastore, Entity comment, String language) {
+    if (language == "en") {
+      return (String) comment.getProperty("content");
+    }
+    else if (comment.hasProperty("content-" + language)) {
+      return (String) comment.getProperty("content-" + language);
+    }
+    else {
+      String original = (String) comment.getProperty("content");
+      Translate translate = TranslateOptions.getDefaultInstance().getService();
+      Translation translation =
+        translate.translate(original, Translate.TranslateOption.targetLanguage(language));
+      String new_text = translation.getTranslatedText();
+      comment.setProperty("content-" + language, new_text);
+      datastore.put(comment);
+      return new_text;
+    }
   }
 
   @Override
@@ -70,8 +89,6 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
-
-    Translate translate = TranslateOptions.getDefaultInstance().getService();
 
     int num_comments = 5;
     try {
@@ -83,11 +100,11 @@ public class DataServlet extends HttpServlet {
 
     String language = request.getParameter("language");
     if (language == null) language = "en";
+
     for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(num_comments))) {
         String content = (String) entity.getProperty("content");
-        Translation translation =
-            translate.translate(content, Translate.TranslateOption.targetLanguage(language));
-        comments.add(new Comment(translation.getTranslatedText(),
+
+        comments.add(new Comment(translateWithCaching(datastore, entity, language),
             (long) entity.getProperty("timestamp"),
             (String) entity.getProperty("userId"),
             (String) entity.getProperty("nickname")));
