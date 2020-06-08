@@ -247,11 +247,15 @@ section hr {
     box-sizing: border-box;
 }
 
-#num-comments-container {
+.comments-selector-container {
     float: right;
     display: inline-block;
     padding-top: 8px;
     font-size: 1.1em;
+}
+
+#language-container {
+    padding-right: 20px;
 }
 
 #delete-button {

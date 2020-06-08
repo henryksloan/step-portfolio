@@ -35,6 +35,10 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.users.User;
 
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
+
 /** Servlet that returns comments and allows for new comments. */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
@@ -62,12 +66,28 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     ArrayList<Comment> comments = new ArrayList<>();
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
-    int num_comments = Integer.parseInt(request.getParameter("num-comments"));
+
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+
+    int num_comments = 5;
+    try {
+        num_comments = Integer.parseInt(request.getParameter("num-comments"));
+    }
+    catch (NumberFormatException e) {
+        // TODO: Same error page as UserServlet errors
+    }
+
+    String language = request.getParameter("language");
+    if (language == null) language = "en";
     for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(num_comments))) {
-        comments.add(new Comment((String) entity.getProperty("content"),
+        String content = (String) entity.getProperty("content");
+        Translation translation =
+            translate.translate(content, Translate.TranslateOption.targetLanguage(language));
+        comments.add(new Comment(translation.getTranslatedText(),
             (long) entity.getProperty("timestamp"),
             (String) entity.getProperty("userId"),
             (String) entity.getProperty("nickname")));

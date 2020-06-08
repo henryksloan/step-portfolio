@@ -143,7 +143,7 @@
             </section>
             <section id="comments">
                 <h1>Comments</h1>
-                <div id="num-comments-container">
+                <div class="comments-selector-container">
                     <label for="num-comments">Comments shown:</label>
                     <select name="num-comments" id="num-comments" onchange="getComments()">
                         <option value="5">5</option>
@@ -151,6 +151,16 @@
                         <option value="20">20</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="comments-selector-container" id="language-container">
+                    <label for="language">Language:</label>
+                    <select name="language" id="language" onchange="getComments()">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="zh">Chinese</option>
+                        <option value="hi">Hindi</option>
+                        <option value="ar">Arabic</option>
                     </select>
                 </div>
                 <div id="comments-area" class="card">
