@@ -168,6 +168,7 @@ section hr {
     top: 50%;
     position: absolute;
     transform: translate(0,-50%);
+    padding-right: 8px;
 }
 
 .project-info p {
@@ -343,6 +344,7 @@ section hr {
     display: flex;
     flex-flow: row wrap;
     max-width: 1500px;
+    margin-right: 8px;
 }
 
 .cards-flex .card {
@@ -356,6 +358,7 @@ section hr {
 
 .cards-flex .card img {
     display: block;
+    flex-shrink: 0;
 }
 
 .cards-flex .card h2 {
