@@ -99,7 +99,7 @@ body {
 }
 
 #content {
-    padding: 0 10px 0 16px;
+    padding: 0 10px 0 10px;
     margin-top: 90px;
 }
 
@@ -155,6 +155,7 @@ section hr {
 .project-info {
     float: right;
     padding: 12px;
+    height: 300px;
 }
 
 #life .project-info {
@@ -170,7 +171,7 @@ section hr {
 }
 
 .project-info p {
-    width: 400px;
+    /* width: 400px; */
 }
 
 .project-info a {
@@ -332,4 +333,27 @@ section hr {
     position: absolute;
     right: 10px;
     top: 5px;
+}
+
+.cards-flex {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 1500px;
+}
+
+.cards-flex .card {
+    display: flex;
+    height: 100%;
+    max-width: 760px;
+    min-width: 500px;
+    flex-basis: 500px;
+    flex-grow: 2;
+}
+
+.cards-flex .card img {
+    display: block;
+}
+
+.cards-flex .card h2 {
+    margin: 0 0 12px 0;
 }
