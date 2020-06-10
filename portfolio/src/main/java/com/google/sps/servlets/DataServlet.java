@@ -35,6 +35,11 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.users.User;
 
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
+import com.google.cloud.translate.TranslateException;
+
 /** Servlet that returns comments and allows for new comments. */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
@@ -46,10 +51,10 @@ public class DataServlet extends HttpServlet {
       private String nickname;
 
       public Comment(String content, long timestamp, String userId, String nickname) {
-          this.content = content;
-          this.timestamp = timestamp;
-          this.userId = userId;
-          this.nickname = nickname;
+        this.content = content;
+        this.timestamp = timestamp;
+        this.userId = userId;
+        this.nickname = nickname;
       }
   }
 
@@ -58,22 +63,63 @@ public class DataServlet extends HttpServlet {
     String json = gson.toJson(comments);
     return json;
   }
+  
+  public String translateWithCaching(DatastoreService datastore, Entity comment, String language) {
+    if (language == "en") {
+      return (String) comment.getProperty("content");
+    }
+    else if (comment.hasProperty("content-" + language)) {
+      return (String) comment.getProperty("content-" + language);
+    }
+    else {
+      String original = (String) comment.getProperty("content");
+
+      try {
+        Translate translate = TranslateOptions.getDefaultInstance().getService();
+        Translation translation =
+            translate.translate(original, Translate.TranslateOption.targetLanguage(language));
+        String new_text = translation.getTranslatedText();
+        comment.setProperty("content-" + language, new_text);
+        datastore.put(comment);
+        return new_text;
+      }
+      catch (TranslateException e) {
+          // Likely caused by authentication failure on dev server; skip translation
+          return original;
+      }
+    }
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     ArrayList<Comment> comments = new ArrayList<>();
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
-    int num_comments = Integer.parseInt(request.getParameter("num-comments"));
+
+    int num_comments = 5;
+    try {
+        num_comments = Integer.parseInt(request.getParameter("num-comments"));
+    }
+    catch (NumberFormatException e) {
+        // TODO: Same error page as UserServlet errors
+    }
+
+    String language = request.getParameter("language");
+    if (language == null) language = "en";
+
     for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(num_comments))) {
-        comments.add(new Comment((String) entity.getProperty("content"),
+        String content = (String) entity.getProperty("content");
+
+        comments.add(new Comment(translateWithCaching(datastore, entity, language),
             (long) entity.getProperty("timestamp"),
             (String) entity.getProperty("userId"),
             (String) entity.getProperty("nickname")));
     }
     String json = commentsToJSON(comments);
-    response.setContentType("text/json;");
+    response.setContentType("text/json; charset=UTF-8");
+    response.setCharacterEncoding("UTF-8");
     response.getWriter().println(json);
   }
 
@@ -90,7 +136,6 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Query query = new Query("User")
         .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
-    PreparedQuery results = datastore.prepare(query);
     Entity entity;
 
     // Search for the user(s) with the matching ID
