@@ -77,11 +77,18 @@ $(document).ready(function() {
     .then((json) => {
         let login_button = document.getElementById("login-button");
         let nickname = document.getElementById("nickname");
+        let comments_logout = document.getElementById("comments-logout");
 
         login_button.href = json.url;
         login_button.innerText = (json.logged_in)
             ? "Logout"
             : "Login";
+        if (json.logged_in) {
+            comments_logout.href = json.url;
+        }
+        else {
+            comments_logout.style.display = "none";
+        }
         nickname.innerHTML = (json.logged_in && json.nickname == "")
             ? "<a class=\"user-button\" onclick=\"nicknamePrompt()\">Set a nickname</a>"
             : json.nickname;
