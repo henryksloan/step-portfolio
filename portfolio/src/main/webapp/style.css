@@ -364,6 +364,15 @@ section hr {
     margin: 3% 0;
 }
 
+#comments-logout {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    background: #4285F4;
+    color: white;
+}
+
 @media only screen and (max-width: 1000px) {
     #sidenav {
         padding: 12px;
@@ -455,12 +464,20 @@ section hr {
         transform: none;
     }
 
+    section {
+        position: relative;
+    }
+
     #comments {
         width: auto;
     }
 
     #comments-area {
         width: 96%;
+    }
+
+    #comments-logout {
+        display: block;
     }
 
     .comment {
@@ -470,7 +487,7 @@ section hr {
 
     #create-comment {
         display: block;
-        width: auto;
+        width: auto !important;
         padding: 14px 6px 14px 14px;
     }
 
