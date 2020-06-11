@@ -155,7 +155,7 @@ section hr {
 .project-info {
     float: right;
     padding: 12px;
-    height: 300px;
+    min-height: 300px;
 }
 
 #life .project-info {
@@ -362,5 +362,5 @@ section hr {
 }
 
 .cards-flex .card h2 {
-    margin: 0 0 12px 0;
+    margin: 3% 0;
 }
