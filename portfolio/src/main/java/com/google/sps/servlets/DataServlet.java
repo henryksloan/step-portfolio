@@ -139,6 +139,7 @@ public class DataServlet extends HttpServlet {
     Entity entity;
 
     // Search for the user(s) with the matching ID
+    PreparedQuery results = datastore.prepare(query);
     try {
         // There should be either zero or one results, so try to treat it as one user
         entity = results.asSingleEntity();

@@ -364,3 +364,23 @@ section hr {
 .cards-flex .card h2 {
     margin: 3% 0;
 }
+
+@media only screen and (max-width: 1000px) {
+    #sidenav {
+        height: 200px;
+        width: 100%;
+        position: relative;
+    }
+
+    #header {
+        display: none;
+    }
+
+    #content-container {
+        margin: 0;
+    }
+
+    #content {
+        margin-top: 16px;
+    }
+}
