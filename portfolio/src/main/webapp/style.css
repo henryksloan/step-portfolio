@@ -50,7 +50,7 @@ body {
 .profile-img {
     width: 200px;
     height: 200px;
-    clip-path: circle(100px at center);
+    clip-path: circle(50% at center);
 }
 
 #sidenav h1, #sidenav h2 {
@@ -367,9 +367,30 @@ section hr {
 
 @media only screen and (max-width: 1000px) {
     #sidenav {
+        padding: 12px;
         height: 200px;
         width: 100%;
         position: relative;
+        box-sizing: border-box;
+    }
+
+    #sidenav h1, #sidenav h2 {
+        display: inline-block;
+        float: right;
+    }
+
+    #sidenav h2 {
+        width: 50%;
+        max-width: 250px;
+        position: absolute;
+        bottom: 50px;
+        right: 0;
+    }
+
+    .profile-img {
+        position: absolute;
+        width: 175px;
+        height: 175px;
     }
 
     #header {
@@ -382,5 +403,31 @@ section hr {
 
     #content {
         margin-top: 16px;
+    }
+
+    .cards-flex {
+        margin-right: 0;
+    }
+
+    .cards-flex .card {
+        display: inline-block;
+        width: auto;
+        min-width: 0;
+    }
+
+    .project-info {
+        min-height: 0;
+        margin-bottom: 8px;
+    }
+
+    #life .project-info {
+        width: auto;
+        height: auto;
+    }
+
+    #life p {
+        width: auto;
+        position: relative;
+        transform: none;
     }
 }
